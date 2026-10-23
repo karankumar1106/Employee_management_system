@@ -1,16 +1,95 @@
-# React + Vite
+# Employee Management System (EMS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based employee task management dashboard with separate admin and employee experiences. The app includes role-based login, task summaries, task status views, and demo data persisted in the browser.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Role-based authentication for admins and employees
+- Admin dashboard for creating tasks and reviewing employee workload
+- Employee dashboard with task counts and status-specific task cards
+- Session persistence across page refreshes
+- Seeded demo accounts and task data
+- Responsive UI built with Tailwind CSS
 
-## React Compiler
+## Demo Accounts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Role | Email | Password |
+| --- | --- | --- |
+| Admin | `admin@me.com` | `123` |
+| Employee | `e1@e.com` | `123` |
 
-## Expanding the ESLint configuration
+Additional employee accounts are available with emails `e2@e.com` through `e5@e.com` and the same password, `123`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- React 19
+- Vite 8
+- Tailwind CSS 4
+- React Context API
+- Browser `localStorage`
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20 or newer
+- npm
+
+### Installation
+
+```bash
+git clone <repository-url>
+cd EMS
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite, usually `http://localhost:5173`.
+
+## Available Scripts
+
+```bash
+npm run dev      # Start the development server
+npm run build    # Create a production build in dist/
+npm run preview  # Preview the production build locally
+npm run lint     # Run ESLint
+```
+
+## Project Structure
+
+```text
+src/
+├── components/
+│   ├── Auth/              # Login interface
+│   ├── Dashboard/         # Admin and employee dashboards
+│   ├── others/            # Headers, task creation, and summaries
+│   └── TaskList/          # New, active, completed, and failed task cards
+├── context/
+│   └── AuthProvider.jsx   # Application authentication context
+├── utils/
+│   └── LocalStorage.jsx   # Seed data and browser storage helpers
+├── App.jsx                # Login routing and session handling
+└── main.jsx               # Application entry point
+```
+
+## Data Storage
+
+The app initializes sample employees and an admin account in `localStorage` under the `employees` and `admin` keys. The active session is stored under `loggedInUser`.
+
+To restore the original demo data, remove these keys in the browser developer tools and refresh the page:
+
+```js
+localStorage.removeItem("employees");
+localStorage.removeItem("admin");
+localStorage.removeItem("loggedInUser");
+```
+
+The seed data is defined in `src/utils/LocalStorage.jsx`.
+
+## Notes
+
+This project is a frontend prototype. Credentials are stored only for demonstration purposes, authentication is handled in the browser, and data is not shared across devices. Do not use production passwords or sensitive employee information with this implementation.
+
+## License
+
+No license has been specified for this project.
