@@ -38,7 +38,7 @@ Additional employee accounts are available with emails `e2@e.com` through `e5@e.
 ### Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/karankumar1106/Employee_management_system.git
 cd EMS
 npm install
 npm run dev
